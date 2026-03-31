@@ -1,0 +1,40 @@
+服务器运行在 http://localhost:3000
+服务器运行在 http://192.168.8.2:3000
+API接口：
+POST http://localhost:3000/api/v1/user/login - 用户登录接口
+GET http://localhost:3000/api/v1/user/info - 获取用户信息接口
+POST http://localhost:3000/api/v1/admin/login - 管理员登录接口
+GET http://localhost:3000/api/v1/admin/barbers - 获取理发师列表
+POST http://localhost:3000/api/v1/admin/barbers - 创建理发师
+PUT http://localhost:3000/api/v1/admin/barbers/:id - 更新理发师
+DELETE http://localhost:3000/api/v1/admin/barbers/:id - 删除理发师
+
+开发模式说明：
+1. 跳过了微信API调用，使用模拟数据
+2. 所有登录请求都会返回成功
+3. 模拟了用户余额和交易记录
+4. 管理员默认用户名：admin，密码：123456
+5. 无需真实的微信AppID和secret
+6. MongoDB数据库已配置，连接地址：mongodb://127.0.0.1:27017/barberpro
+MongoDB连接成功: 127.0.0.1
+=== 开始创建数据库结构 ===
+(node:31310) [MONGOOSE] Warning: mongoose: Duplicate schema index on {"transaction_no":1} for model "Transaction". This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ 集合已存在: users
+(node:31310) [MONGOOSE] Warning: mongoose: Duplicate schema index on {"name":1} for model "Service". This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(node:31310) [MONGOOSE] Warning: mongoose: Duplicate schema index on {"openid":1} for model "User". This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+✓ 集合已存在: services
+✓ 集合已存在: transactions
+✓ 集合已存在: admins
+✓ 集合已存在: barbers
+
+=== 创建索引 ===
+✓ 用户表索引: openid (唯一)
+✓ 交易表索引: user_id, created_at, transaction_no (唯一)
+✓ 项目表索引: name (唯一)
+✓ 管理员表索引: username (唯一)
+✓ 理发师表索引: name (唯一)
+
+=== 插入初始数据 ===
+
+=== 数据库结构创建完成 ===
